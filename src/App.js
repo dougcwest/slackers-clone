@@ -5,8 +5,18 @@ import Login from './components/Login'
 import styled from 'styled-components';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+import db from './firebase';
 
 function App() {
+
+  const getChannels = () => {
+    db.collection('rooms').onSnapshot((snapshot) => {
+      console.log(snapshot.docs);
+    });
+  };
+
+  getChannels();
+
   return (
     <div className="App">
       <Router>
