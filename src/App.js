@@ -5,33 +5,52 @@ import Login from './components/Login'
 import styled from 'styled-components';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-import db from './firebase';
+import db, { auth } from './firebase';
+import { useEffect, useState } from 'react';
 
 function App() {
 
+  const [rooms, setRooms] = useState([]);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+
   const getChannels = () => {
     db.collection('rooms').onSnapshot((snapshot) => {
-      console.log(snapshot.docs);
+      // eslint-disable-next-line array-callback-return
+      setRooms(snapshot.docs.map((doc) => {
+        return { id: doc.id, name: doc.data().name };
+      }));
     });
   };
 
-  getChannels();
+  const signOut = () => {
+    auth.signOut().then(() => {
+      localStorage.removeItem('user');
+      setUser(null);
+    })
+  };
 
+  useEffect(() => {
+    getChannels();  
+  }, []);
+  
   return (
     <div className="App">
       <Router>
-        <Container>
-          <Header />
-            <Main>
-              <Sidebar />
-              <Routes>
-                <Route path="/room" element={<Chat />}>  
-                </Route>
-                <Route path="/" element={<Login />}>
-                </Route>
-              </Routes>
-            </Main>
-        </Container>
+        {
+          !user ?
+          <Login setUser={setUser}/>
+          :
+          <Container>
+            <Header signOut={signOut} user={user}/>
+              <Main>
+                <Sidebar rooms={rooms} />
+                <Routes>
+                  <Route path="/room" element={<Chat />}>  
+                  </Route>
+                </Routes>
+              </Main>
+          </Container>
+        }
       </Router>
     </div>
   );
