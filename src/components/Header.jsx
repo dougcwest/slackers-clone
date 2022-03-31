@@ -20,7 +20,7 @@ const Header = () => {
           Doug
         </Name>
         <UserImage>
-          <img src="https://i.imgur.com/6VBx3io.png" />
+          <img src="https://i.imgur.com/6VBx3io.png" alt="avatar" />
         </UserImage>
       </UserContainer>
     </Container>
@@ -36,6 +36,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  box-shadow: inset 0 0 0 1px rgb(104 74 104);
 `;
 
 const Main = styled.div`
