@@ -1,16 +1,72 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import ChatInput from './ChatInput';
 import ChatMessage from './ChatMessage';
+import db from '../firebase';
+import 'firebase/firestore';
+import { useParams } from 'react-router-dom';
+import firebase from 'firebase';
 
-const Chat = () => {
+
+function Chat( { user }) {
+
+  let { channelId } = useParams();
+  const [channel, setChannel] = useState(); 
+  const [messages, setMessages] = useState([]);
+
+  const getMessages = () => {
+    db.collection('rooms')
+    .doc(channelId)
+    .collection('messages')
+    .orderBy('timestamp', 'asc')
+    .onSnapshot((snapshot) => {
+      let messages = snapshot.docs.map((doc) => doc.data());
+        setMessages(messages);
+    })
+  }  
+
+  const sendMessage = (text) => {
+    if (channelId) {
+      const t = firebase.firestore.Timestamp.fromDate(new Date());
+      const d = t.toDate().toDateString();
+      db.collection('rooms').doc(channelId).collection('messages').add({
+        text: text,
+        timestamp: d,
+        user: user.name,
+        userImage: 'https://i.imgur.com/6VBx3io.png', 
+      })
+      .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);  
+      });
+    };
+  };      
+
+  const getChannel = () => {
+    db.collection('rooms')
+    .doc(channelId)
+    .onSnapshot((snapshot) => {
+      setChannel(snapshot.data());
+    })
+    
+  }
+
+  useEffect(() => {
+    getChannel();
+    getMessages();
+  }, [channelId])
+
   return (
     <><Container>
       <Header>
         <Channel>
           <ChannelName>
-            # channel1  
+            #{channel && JSON.stringify(channel.name).slice(1, -1)}  
           </ChannelName> 
           <ChannelInfo>
             info  
@@ -24,9 +80,20 @@ const Chat = () => {
         </ChannelDetails>
       </Header>
       <MessageContainer>
-        <ChatMessage />
+        {
+          messages.length > 0 && 
+          messages.map((data, index)=> (
+            <ChatMessage 
+              key={index}
+              text={data.text}
+              name={data.user}
+              image={data.userImage}
+              timestamp={data.timestamp}
+            />
+          ))
+        }
       </MessageContainer>
-      <ChatInput />
+      <ChatInput sendMessage={sendMessage} />
     </Container>
     </>
   )

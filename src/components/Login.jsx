@@ -9,7 +9,7 @@ const Login = (props) => {
     .then((result) => {
       const newUser = {
         name: result.user.displayName,
-        photo: result.user.photoUrl,
+        photo: result.user.photoURL,
       }
       localStorage.setItem('user', JSON.stringify(newUser));
       props.setUser(newUser);

@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Chat from './components/Chat';
 import Login from './components/Login'
 import styled from 'styled-components';
@@ -44,10 +44,14 @@ function App() {
             <Header signOut={signOut} user={user}/>
               <Main>
                 <Sidebar rooms={rooms} />
-                <Routes>
-                  <Route path="/room" element={<Chat />}>  
+                <Switch>
+                  <Route path="/room/:channelId"> 
+                    <Chat user={user}/>  
                   </Route>
-                </Routes>
+                  <Route path="/">
+                    This will be the main login page
+                  </Route>
+                </Switch>
               </Main>
           </Container>
         }
