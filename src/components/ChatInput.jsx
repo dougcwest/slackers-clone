@@ -10,6 +10,7 @@ const ChatInput = ({ sendMessage }) => {
     e.preventDefault();
 
     sendMessage(input);
+    setInput('');
   };
 
 
@@ -19,6 +20,7 @@ const ChatInput = ({ sendMessage }) => {
         <form>
           <input 
             type="text" 
+            value={input}
             onChange={(e) => setInput(e.target.value)}          
             placeholder="Message here..." />
           <SendButtton 
@@ -42,8 +44,9 @@ const Container = styled.div`
 `;
 
 const InputContainer = styled.div`
-  border: 1px solid #342180;
+  border: 1px solid #0063b2;
   border-radius: 4px;
+  margin-top: 30px;
 
   form {
     display: flex;
@@ -64,7 +67,7 @@ const InputContainer = styled.div`
 
 const SendButtton = styled.button`
   color: white;
-  background: #b7a2d7;
+  background: #f7969e;
   border-radius: 2px;
   width: 32px;
   height: 32px;

@@ -30,7 +30,7 @@ const Header = ({ user, signOut }) => {
 export default Header;
 
 const Container = styled.div`
-  background: #342180;
+  background: #0f2f81;
   color: white;
   display: flex;
   align-items: center;

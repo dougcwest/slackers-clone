@@ -27,7 +27,9 @@ function Chat( { user }) {
         setMessages(messages);
     })
   }  
-
+  //const sendMessage2  = (text) => {
+    //sendMessage(messages, setMessages, text, channelId)
+  //}
   const sendMessage = (text) => {
     if (channelId) {
       const t = firebase.firestore.Timestamp.fromDate(new Date());
@@ -104,6 +106,7 @@ export default Chat;
 const Container = styled.div`
   display: grid;
   grid-template-rows: 64px auto min-content; 
+  min-height: 0;
 `;
 
 const Header = styled.div`
@@ -116,7 +119,10 @@ const Header = styled.div`
 `;
 
 const MessageContainer = styled.div`
-
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  overflow-y: scroll;
 `;
 
 const Channel = styled.div`
@@ -149,5 +155,5 @@ const ChannelInfo = styled.div`
   font-weight: 500;
   color: #606060;
   font-size 18px;
-  margin-top: 6px;
+  margin-top: 4px;
 `;

@@ -8,7 +8,7 @@ import AppsIcon from '@material-ui/icons/Apps';
 
 
 export const sidebarItems = [
- /* {
+  {
     icon: <MessageIcon />,
     text: "Thread",
   },
@@ -31,5 +31,5 @@ export const sidebarItems = [
   {
     icon: <AppsIcon />,
     text: "More",
-  }, */
+  },
 ]

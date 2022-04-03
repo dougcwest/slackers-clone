@@ -71,7 +71,7 @@ const Sidebar = (props) => {
 export default Sidebar;
 
 const Container = styled.div`
-  background: #3c15d6;
+  background: #0063b2;
 `;
 
 const WorkSpaceContainer = styled.div`
@@ -90,8 +90,8 @@ const NewMessage = styled.div`
   width: 36px;
   height: 36px;
   background: white;
-  color: #3c15d6;
-  fill: #3c15d6;
+  color: #0f2f81;
+  fill: #0f2f81;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,7 +106,7 @@ const MainChannels = styled.div`
 `;
 
 const MainChannelItem = styled.div`
-color: lightgray;
+color: #fafafa;
 display: grid;
 grid-template-columns: 15% auto;
 height: 36px;
@@ -116,16 +116,16 @@ cursor: pointer;
 margin-bottom: 8px;
 
 &:hover {
-  background: #342180;
+  background: #0f2f81;
 }
 &:focus {
-  background: #b7a2d7;
+  background: #f7969e;
   color: white;
 }
 `;
 
 const ChannelsContainer = styled.div`
-  color: lightgray;
+  color: #fafafa;
   margin-top: 10px;
 
   h3 {
@@ -154,10 +154,10 @@ const Channel = styled.div`
   padding-left: 19px;
 
   &:hover {
-    background: #342180;
+    background: #0f2f81;
   }
   &:focus {
-    background: #b7a2d7;
+    background: #f7969e;
     color: white;
   }
 `;
