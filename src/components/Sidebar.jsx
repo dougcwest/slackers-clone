@@ -81,7 +81,7 @@ const WorkSpaceContainer = styled.div`
   align-items: center;
   padding-left: 19px;
   justify-content: space-between;
-  border-bottom: 1px solid #532753;
+  border-bottom: 1px solid rgba(250, 250, 250, 0.4);
 `;
 
 const Name = styled.div``;

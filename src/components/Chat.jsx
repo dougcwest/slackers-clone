@@ -133,18 +133,22 @@ const ChannelDetails = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: #1e1926;
+  color: #373838;
   font-weight: 400;
+
+  &:hover {
+    color: #f7969e;
+  }
 `;
 
 const ChannelName = styled.div`
   font-weight: 700;
   font-size: 22px;
-  color: #1e1926;
+  color: #f7969e;
   cursor: pointer;
 
   &:hover {
-    background: #ebecf0;
+    background: #fafafa;
     border-radius: 3px;
     padding-left: 5px;
     padding-right: 5px;

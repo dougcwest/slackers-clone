@@ -20,7 +20,7 @@ const Header = ({ user, signOut }) => {
           {user.name}
         </Name>
         <UserImage onClick={signOut}>
-          <img src={user.photo ? user.photo : "https://i.imgur.com/6VBx3io.png"} alt="avatar" />
+          <img src={user.photo ? user.photo : "https://i.ibb.co/gMSQPXp/green-avatar.jpg"} alt="avatar" />
         </UserImage>
       </UserContainer>
     </Container>
@@ -36,7 +36,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  box-shadow: inset 0 0 0 1px rgb(104 74 104);
+  box-shadow: inset 0 0 0 1px rgba(250, 250, 250, 0.4);
 `;
 
 const Main = styled.div`
@@ -61,7 +61,7 @@ const SearchContainer = styled.div`
 `;
 
 const Search = styled.div`
-  box-shadow: inset 0 0 0 1px rgb(104 74 104);
+  box-shadow: inset 0 0 0 1px rgba(250, 250, 250, 0.4);
   border-radius: 6px;
   width: 100%;
 
